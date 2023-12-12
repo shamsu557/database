@@ -89,19 +89,7 @@ body {
   background-color: var(--navbar-text-color);
 }
 
-/* Media Queries for Responsive Navbar */
-@media screen and (max-width: 768px) {
- 
-  .navbar-link {
-    font-size: 0.8rem; /* Decrease font size for smaller screens */
-  }
-}
 
-@media screen and (max-width: 576px) {
-  .navbar-container {
-    font-size: 0.8rem; /* Decrease font size for extra small screens */
-  }
-}
 #intro {
   width: 100%;
   background-color:#fffaf0b3;
@@ -115,7 +103,7 @@ body {
 
 #intro:before {
   content: "";
-  background: rgba(230, 222, 222, 0.314);
+  background: rgba(241, 238, 238, 0.314);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -156,27 +144,8 @@ body {
   font-size: 24px;
 }
 
-@media (min-width: 1024px) {
-  #intro {
-    background-attachment: fixed;
-  }
-}
 
-@media (max-width: 768px) {
-  #intro {
-    height: 100vh;
-  }
 
-  #intro h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #intro h2 {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
 
 .footer {
   background-color: #f9faf9;
@@ -246,7 +215,31 @@ body {
 #myBtn:hover {
   background-color: #555;
 }
-    
+
+/* Small screens (phones) */
+@media only screen and (max-width: 600px) {
+  /* Adjust styles for small screens */
+  .carousel-text {
+    font-size: 14px;
+  }
+}
+
+/* Medium screens (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Adjust styles for medium screens */
+  .carousel-text {
+    font-size: 16px;
+  }
+}
+
+/* Large screens (desktops, laptops) */
+@media only screen and (min-width: 1025px) {
+  /* Adjust styles for large screens */
+  .carousel-text {
+    font-size: 18px;
+  }
+}
+   
   </style>
 </head>
 <body>
@@ -270,8 +263,8 @@ body {
   </header>
   <section id="intro" class="d-flex justify-content-center align-items-center">
     <div class="text-center">
-        <h1>Welcome to Zamfara State Online Central Database</h1>
-        <p class="text-light">Empowering Zamfara State with a cutting-edge online central database system, 
+        <h1 class="text-dark">Welcome to Zamfara State Online Central Database</h1>
+        <p class="text-dark">Empowering Zamfara State with a cutting-edge online central database system, 
           connecting individuals, communities, and organizations for efficient information management.
           Our platform serves as a centralized hub, fostering seamless access to vital data, educational resources, employment opportunities, and governmental services for the vibrant populace of Zamfara State.Explore our comprehensive database, designed to streamline information dissemination, facilitate effective governance, and empower the citizens of Zamfara State.</p>
     </div>
@@ -311,7 +304,7 @@ body {
       </div>
 </div>
 <div class="carousel-item">
-  <img src="image2.jpeg" class="d-block w-100" alt="Students">
+  <img src="artisan.jfif" class="d-block w-100" alt="Students">
   <div class="carousel-caption d-none d-md-block">
       <h5>Artist</h5>
       <p>Database showcasing artistic talents, cultural contributions, and creative works from artists.</p>

@@ -357,7 +357,11 @@ body {
                     alert("Passwords do not match");
                     return;
                 }
-
+                 // Check for empty fields
+                if (!email || !username || !password || !confirmPassword) {
+            alert("Please fill in all fields");
+            return;
+        }
                 // Check if the email or username is already registered
                 const userExists = storedUsers.some(user => user.email === email || user.username === username);
                 if (userExists) {
@@ -371,7 +375,8 @@ body {
 
                 alert("Registration successful");
                 loginLink.style.display = "block"; // Show the Login button after successful registration
-            });
+                window.location.href = "login.html";          
+              });
         });
     
  // Get the button

@@ -31,8 +31,8 @@ body {
         
 #profile-pic {
             max-width: 50px;
-            max-height: 50px;
-            border-radius: 50%;
+            max-height: 60px;
+            border-radius: 45%;
         }
 .container {
   max-width: 1000px;
@@ -262,27 +262,23 @@ body {
             <input type="text" class="form-control" id="address" name="address">
         </div>
         <div class="mb-3">
-          <label for="LGA" class="form-label">Local Government</label>
-          <select class="form-control">
-            <option value="" selected disabled>Select Local Government</option>
-            <option value="#">A</option>
-            <option value="#">B</option>
-            <option value="#">C</option>
-            <option value="#">D</option>
-            <option value="#">E</option>
-          </select>
-      </div>
-      <div class="mb-3">
-        <label for="Ward" class="form-label">Ward</label>
-        <select class="form-control">
-          <option value="" selected disabled>Select Ward</option>
-            <option value="#">A</option>
-            <option value="#">B</option>
-            <option value="#">C</option>
-            <option value="#">D</option>
-            <option value="#">E</option>
-          </select>
-    </div>
+            <label for="LGA" class="form-label">Local Government</label>
+            <select class="form-control" id="localGovernment">
+              <option value="" selected disabled>Select Local Government</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="Ward" class="form-label">Ward</label>
+            <select class="form-control" id="ward" disabled>
+              <option value="" selected disabled>Select Ward</option>
+            </select>
+          </div>
+    
         <div class="mb-3">
             <label for="phone" class="form-label">Phone Number</label>
             <input type="tel" class="form-control" id="phone" name="phone">
@@ -453,6 +449,39 @@ body {
     }
 });
 
+// Define a mapping of Local Governments to their respective wards
+const localGovernmentWards = {
+          A: ["Ward A1", "Ward A2", "Ward A3"], // Replace with actual wards for Local Government A
+          B: ["Ward B1", "Ward B2"], // Replace with actual wards for Local Government B
+          C: ["Ward C1", "Ward C2", "Ward C3", "Ward C4"], // Replace with actual wards for Local Government C
+          D: ["Ward D1", "Ward D2", "Ward D3"], // Replace with actual wards for Local Government D
+          E: ["Ward E1", "Ward E2", "Ward E3", "Ward E4", "Ward E5"], // Replace with actual wards for Local Government E
+        };
+      
+        // Function to update the wards based on the selected Local Government
+        document.getElementById('localGovernment').addEventListener('change', function() {
+          const selectedLocalGovernment = this.value;
+          const wardDropdown = document.getElementById('ward');
+      
+          // Clear previous options
+          wardDropdown.innerHTML = '<option value="" selected disabled>Select Ward</option>';
+      
+          if (selectedLocalGovernment && localGovernmentWards[selectedLocalGovernment]) {
+            // Enable the ward dropdown
+            wardDropdown.disabled = false;
+      
+            // Add options for the selected Local Government's wards
+            localGovernmentWards[selectedLocalGovernment].forEach(function(ward) {
+              const option = document.createElement('option');
+              option.value = ward;
+              option.text = ward;
+              wardDropdown.appendChild(option);
+            });
+          } else {
+            // If no Local Government is selected or no wards found, disable the ward dropdown
+            wardDropdown.disabled = true;
+          }
+        });
 
 // Get the button
 let mybutton = document.getElementById("myBtn");

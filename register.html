@@ -360,6 +360,12 @@ body {
                 const password = document.getElementById("password").value;
                 const confirmPassword = document.getElementById("confirmPassword").value;
 
+                 // Validate the password against a specific pattern
+            const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?/>.<,])(?=.{8,})/;
+            if (!passwordPattern.test(password)) {
+            alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+            return;
+        }
                 if (password !== confirmPassword) {
                     alert("Passwords do not match");
                     return;
@@ -368,7 +374,9 @@ body {
                 if (!email || !username || !password || !confirmPassword) {
             alert("Please fill in all fields");
             return;
-        }
+           
+          }
+          
                 // Check if the email or username is already registered
                 const userExists = storedUsers.some(user => user.email === email || user.username === username);
                 if (userExists) {

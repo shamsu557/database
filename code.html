@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>login-page</title>
+  <title>Enter-code</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -209,39 +209,38 @@ body {
   </style>
 </head>
 <body>
-  <header id="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-      <div class="container">
-        <a href="/" class="navbar-brand text-dark">Cloud Database</a>
-        <button type="button" class="navbar-toggler" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar-menu" data-toggle="collapse" data-target="#navbar-menu">
-          <span class="navbar-toggler-icon bg-secondary"></span>
-        </button>
-        <div id="navbar-menu" class="collapse navbar-collapse detached">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link text-dark" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="register.html">Register</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="login.html">Login</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="about.html">About</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <div class="container mt-5">
+    <header id="navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+          <div class="container">
+            <a href="/" class="navbar-brand text-dark">Cloud Database</a>
+            <button type="button" class="navbar-toggler" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar-menu" data-toggle="collapse" data-target="#navbar-menu">
+              <span class="navbar-toggler-icon bg-secondary"></span>
+            </button>
+            <div id="navbar-menu" class="collapse navbar-collapse detached">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link text-dark" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="register.html">Register</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="login.html">Login</a></li>
+                <li class="nav-item"><a class="nav-link text-dark" href="about.html">About</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+<div class="container mt-5">
     <div class="col-md-6 offset-md-3">
-        <h2 class="mb-4">Login</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <input type="text" id="loginInput" class="form-control" placeholder="Email/Username">
-            </div>
-            <div class="form-group">
-                <input type="password" id="loginPassword" class="form-control" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-            <a href="passwordreset.html">Forgot Password?</a>
-          </form>
+    <h2 class="mb-4">Enter Code to Reset Password</h2>
+  <form id="resetCodeForm">
+    <div class="form-group">
+      <label for="resetCode">Enter Code:</label>
+      <input type="text" id="resetCode" class="form-control" placeholder="enter sent code">
     </div>
+    <button type="submit" class="btn btn-primary btn-block">Set New Password</button>
+  </form>
 </div>
+</div>
+<br>
 <br><br><br>
 <footer class="bg-light text-dark pt-4">
   <div class="container">
@@ -291,7 +290,6 @@ body {
  
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
-
   <!-- Bootstrap JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -329,33 +327,25 @@ body {
         });
       }
     });
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    document.getElementById("resetCodeForm").addEventListener("submit", function(event) {
     event.preventDefault();
-    const loginInput = document.getElementById("loginInput").value;
-    const loginPassword = document.getElementById("loginPassword").value;
-
-    if (!loginInput || !loginPassword) {
-        alert("Please fill in all fields");
-        return;
-    }
-
-    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-    const foundUser = registeredUsers.find(user =>
-        user.email === loginInput || user.username === loginInput
-    );
-
-    if (foundUser && foundUser.password === loginPassword) {
-        localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
-        alert("Login successful");
-        window.location.href = "personal_info.html"; // Redirect to details page
-    } else {
-        alert("Invalid credentials or user not found");
-    }
-});
+    const resetCode = document.getElementById("resetCode").value;
+    
+    if (resetCode == 1234|| resetCode==1122|| resetCode==2233) {
+                    alert("code successiful");
+                    window.location.href = "change.html"; 
+                }else{
+                alert("invalid code")
+                return;
+            }
+    
+    // Add your logic to send the reset code, new password, and confirm password to the backend for validation
+    // Ensure the backend verifies the code and updates the password accordingly
 
 
+  });
 
-         // Get the button
+       // Get the button
  let mybutton = document.getElementById("myBtn");
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -372,7 +362,7 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-}
-  </script>
+} 
+</script>
 </body>
 </html>

@@ -358,23 +358,24 @@ body {
     const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-    const oldPasswords = storedUsers
-        .filter(user => user.email === loggedInUser.email || user.username === loggedInUser.username)
-        .map(user => user.password);
-
+    const oldPasswords = storedUsers.filter(user => user.email === loggedInUser.email || user.username === loggedInUser.username).map(user => user.password);
     if (oldPasswords.includes(newPassword)) {
         alert("Password cannot be the same as one of your previous passwords");
         return;
     }
 
+    // Additional code to update the stored password for the logged-in user
+    loggedInUser.password = newPassword;
+
     // Update the password in the list of registered users in local storage
-    storedUsers.forEach(user => {
+    const updatedUsers = storedUsers.map(user => {
         if (user.email === loggedInUser.email || user.username === loggedInUser.username) {
-            user.password = newPassword;
+            return loggedInUser;
         }
+        return user;
     });
 
-    localStorage.setItem("registeredUsers", JSON.stringify(storedUsers));
+    localStorage.setItem("registeredUsers", JSON.stringify(updatedUsers));
     alert("Password updated successfully");
     window.location.href = "login.html"; // Redirect to login page
 });

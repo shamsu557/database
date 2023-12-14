@@ -461,7 +461,7 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const fileInput = document.createElement("input");
         fileInput.type = "file";
-        fileInput.accept = ".jpg,.jfif"; // Allow only JPG or JFIF files
+        fileInput.accept = ".jpg,.jfif, .png"; // Allow only JPG or JFIF files
         fileInput.addEventListener("change", function () {
             handleProfilePictureUpload(fileInput.files);
         });
